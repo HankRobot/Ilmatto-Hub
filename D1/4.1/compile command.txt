@@ -1,0 +1,9 @@
+//for Ilmatto
+avr-gcc -mmcu=atmega644p -DF_CPU=12000000 -Wall -Os -Wl,-u,vfprintf -lprintf_flt -lm embedded_boost.c -o embedded_boost.elf
+avr-objcopy -O ihex embedded_boost.elf prog.hex
+avrdude -c usbasp -p m644p -U flash:w:prog.hex
+
+//for uarttest
+avr-gcc -mmcu=atmega644p -DF_CPU=12000000 -Wall -Os UARTTest.c -o uart.elf
+avr-objcopy -O ihex uart.elf uart.hex
+avrdude -c usbasp -p m644p -U flash:w:uart.hex
